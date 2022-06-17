@@ -6,6 +6,7 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .filters import *
+from django.shortcuts import (HttpResponseRedirect, get_object_or_404,redirect, render)
 
 
 def homePage(request):
@@ -207,6 +208,8 @@ class RegistrationView(View):
 
     def post(self, request):
 
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -221,7 +224,7 @@ class RegistrationView(View):
                     messages.error(request, 'Password too short')
                     return render(request, 'register.html', context)
 
-                user = User.objects.create_user(username=username, email=email)
+                user = User.objects.create_user(first_name=first_name,last_name=last_name,username=username, email=email)
                 user.set_password(password)
                 user.save()
 
