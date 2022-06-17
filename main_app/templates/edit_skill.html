@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Edit Skill{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="content mt-3">
+
+    <div class="card card-body mt-3">
+        <div class="mb-3">
+            <h4 class="d-inline">VIEW SKILL</h4>
+        </div>
+
+        <form class="card card-body" action="{% url 'update_skill' skillItem.id %}" method="POST">
+            {% csrf_token %}
+
+            <h6 class="card-header bg-success">Viewing Skill</h6>
+            <div class="card-body row g-3">
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Title</label>
+                    <input type="text" class="form-control form-control-sm" value="{{skillItem.title}}"
+                           name="title">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Address</label>
+                    <input type="text" class="form-control form-control-sm" value="{{skillItem.address}}"
+                           name="address">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Conducted by</label>
+                    <input type="text" class="form-control form-control-sm" value="{{skillItem.conducted}}"
+                           name="conducted">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Date Started</label>
+                    <input type="date" class="form-control form-control-sm" value="{{skillItem.date_started}}"
+                           name="date_started">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Date Ended</label>
+                    <input type="date" class="form-control form-control-sm" value="{{skillItem.date_ended}}"
+                           name="date_ended">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Time Duration</label>
+                    <input type="time" class="form-control form-control-sm" value="{{skillItem.time_duration}}"
+                           name="time_duration">
+                </div>
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Skill Type</label>
+                    <select class="form-select form-select-sm" value="{{skillItem.skill_type}}" name="skill_type">
+                        <option>Managerial</option>
+                        <option>Supervisory</option>
+                        <option>Technical</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm mt-2">Update Skill</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

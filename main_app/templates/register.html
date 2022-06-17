@@ -1,0 +1,94 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card mt-5">
+
+
+      <div class="card-body">
+        <div class="card-title py-3">
+          <h4 class="text-center"><b>USM</b> Skills And Training Portal</h4>
+          <h5 class="text-center">Register an account</h5>
+        </div>
+        <form action="{% url 'register' %}" method="post">
+
+          {% csrf_token %}
+
+
+
+           <div class="form-group row">
+             <div class="col-sm-6 mb-3 mb-sm-0">
+               <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                      placeholder="First Name">
+             </div>
+             <div class="col-sm-6">
+               <input type="text"
+                      class="form-control form-control-user"
+                      id="exampleLastName"
+                      placeholder="Last Name">
+             </div>
+           </div>
+
+          <div class="form-group py-3">
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              id="usernameField"
+              value="{{fieldValues.username}}"
+              class="form-control form-control-user"
+            />
+          </div>
+          <div class="invalid_feedback invalid-feedback" style="display:none">
+          </div>
+          <p class="text-sm text-success usernameSuccessOutput"></p>
+          <div class="form-group py-2">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              class="form-control form-control-user"
+              id="emailField"
+
+              value="{{fieldValues.email}}"
+            />
+          </div>
+
+
+        <div class="emailFeedBackArea invalid-feedback" style="display:none">
+
+        </div>
+             <div class="form-group row py-2 ">
+
+               <div class="col-sm-6">
+                 <input name="password" class="form-control form-control-user"
+                        placeholder="Password">
+               </div>
+            </div>
+
+
+      <input type="submit" value="Register" class="btn btn-block btn-primary submit-btn " />
+
+          <div class="border-top pt-3">
+          <small class="text-muted">
+                Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+        </div>
+
+
+
+        </form>
+      </div>
+
+
+  <div class="col-md-5"></div>
+</div>
+  </div>
+<script src="{% static 'js/register.js' %}"></script>
+
+</div>{% endblock content %}
