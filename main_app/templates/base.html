@@ -11,6 +11,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css'%} ">
     <!-- Ionicons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet"
@@ -44,15 +45,16 @@
                 </li>
 
             </ul>
-
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item text-align-left">
+              <a class="nav-link active " aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="/">about</a>
             </li>
           </ul>
+
+
             {% if user.is_authenticated %}
 
                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
@@ -82,13 +84,7 @@
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">{% block page_title %}{% endblock page_title %}</h1>
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">{{ page_title }}</li>
-                            </ol>
-                        </div><!-- /.col -->
+
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>

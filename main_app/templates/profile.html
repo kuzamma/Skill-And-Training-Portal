@@ -4,6 +4,11 @@
 
 <div class="content">
 <div class="card card-body mt-3">
+
+     <div class="image">
+                <img src="{{ request.user.certificate}}" class="img-square elevation-2" alt="User Image">
+            </div>
+
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
@@ -19,8 +24,15 @@
               {{ p_form|crispy }}
               <div class="form-group col-4"> {{ user.email }} </div>
           </fieldset>
+
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+              <div class="form-group col-4"> {{ user.email }} </div>
+          </fieldset>
           <div class="form-group">
-              <a href="{% url 'view_seminar' %}" class="btn btn-outline-info">Updete</a>
+              <a href="{% url 'view_profile' %}" class="btn btn-outline-info">Updete</a>
           </div>
 
       </form>

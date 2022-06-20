@@ -9,16 +9,14 @@
 <div class="content mt-3">
     <div class="card card-body mt-3">
         <h4 class="mb-3">LIST WORKSHOPS</h4>
-        {% for message in messages %}
-        <p class="alert alert-success">{{message}}</p>
-        {% endfor %}
+
 
         <div class="card card-body">
             <form method="GET">
                 <h6 class="text-muted">Search for Title:</h6>
                 <div class="row">
                     <div class="form-group col-4">
-                        <h6>{{ workshopFilter.form.title.label_tag }}</h6>
+                        <h6>{{ workshopFilter.form.user.label_tag }}</h6>
                         {% render_field workshopFilter.form.title class="form-control form-control-sm" %}
                     </div>
 
@@ -42,8 +40,9 @@
                     <th scope="col">Conducted by</th>
                     <th scope="col">Date Started</th>
                     <th scope="col">Date Ended</th>
-                    <th scope="col">Time Duration</th>
-                    <th scope="col">Seminar Type</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Workshop Type</th>
+                    <th scope="col">Level</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,8 +56,10 @@
                     <td>{{workshop.date_ended}}</td>
                     <td>{{workshop.time_duration}}</td>
                     <td>{{workshop.seminar_type}}</td>
-                    <td><a href="{% url 'edit_workshop' workshop.id %}" class="btn btn-primary btn-sm">View</a>
-                        <a href="{% url 'delete_workshop' workshop.id %}" class="btn btn-danger btn-sm">Delete</a>
+                    <td>{{workshop.level}}</td>
+                    <td><a href="{% url 'edit_workshop' workshop.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'delete_workshop' workshop.id %}" class="btn btn-danger"
+                           onclick="return confirm('Are you sure about this ?')">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

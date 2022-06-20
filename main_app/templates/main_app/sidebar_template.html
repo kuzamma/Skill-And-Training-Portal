@@ -11,7 +11,7 @@
             </div>
 
             <div class="info">
-                <a href="#" class="d-block">{{user}}</a>
+                <a href="#" class="d-block">{{user.first_name}} {{user.last_name}}</a>
             </div>
         </div>
 
@@ -29,22 +29,11 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    {% url 'admin_view_profile' as admin_view_profile %}
-                    <a href="{{admin_view_profile}}"
-                       class="nav-link {% if admin_view_profile == request.path %} active {% endif %}">
-                        <i class="nav-icon fas fa-address-card"></i>
-                        <p>
-                            Update Profile
-
-                        </p>
-                    </a>
-                </li>
 
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-bookmark"></i>
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
                             Seminar
                             <i class="fas fa-angle-left right"></i>

@@ -1,8 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
 
-<head>
+{% load static %}
+
+
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>S.T | Log In</title>
@@ -11,6 +12,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
     <!-- Ionicons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <link rel="stylesheet" href="{% static 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
@@ -20,14 +22,11 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Google Recaptcha     -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-</head>
+
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <a href=""><b>USM</b>  Skills & Training Portal</a>
 
-        </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
@@ -43,13 +42,19 @@
                     {% endfor %}
                 </div>
                 {% endif %}
+
+                <div class=" align=center py-3">
+                <h4 class="text-center"> <b>USM</b> Skills & Training Portal</h4>
+               <h5 class="text-center"> Login to your Account </h5>
+
+        </div>
                 <form action="login" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input required type="username" name='username' class="form-control" placeholder="Email">
+                        <input required type="username" name='username' class="form-control" placeholder="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
@@ -87,7 +92,7 @@
 
 
 
-                    <a href="{% url 'register' %}">meron na</a>
+                    <a href="{% url 'register' %}">WALA PA beh</a>
                 </p>
 
             </div>
@@ -104,5 +109,3 @@
     <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 
 </body>
-
-</html>

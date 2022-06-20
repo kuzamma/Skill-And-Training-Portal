@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\main_app"
+    "\\main_app",
+    "\\main_app\\static",
+    "\\main_app\\static\\dist",
+    "\\main_app\\static\\dist\\css",
+    "\\main_app\\static\\dist\\css\\alt"
   ],
-  "SelectedNode": "\\main_app\\urls.py",
   "PreviewInSolutionExplorer": false
 }

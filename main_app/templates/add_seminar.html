@@ -1,56 +1,55 @@
 {% extends 'base.html' %}
+
 {% block title %}Add Seminar{% endblock %}
 
 {% block content %}
 
 
-<div class="content mt-3">
+<div class="content ">
 
-    <div class="card card-body mt-3">
+    <div class="card card-body mt-20">
         <div class="mb-3">
             <h4 class="d-inline">ADD SEMINAR</h4>
-            <a href="{% url 'view_seminar' %}" class="btn btn-sm btn-primary d-inline float-end">View Seminar</a>
+            <a href="{% url 'view_seminar' %}" class="align=left btn btn-sm btn-primary d-inline float-end">View Seminar</a>
         </div>
-        {% for message in messages %}
-        <p class="alert alert-success">{{message}}</p>
-        {% endfor %}
+
         <form class="card card-body" method="POST">
             {% csrf_token %}
 
             <h6 class="card-header bg-success">Seminar Details</h6>
             <div class="card-body row g-3">
 
-                <div class="col-13">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Title</label>
                     <input type="text" class="form-control form-control-sm" name="title" required>
                 </div>
 
-                <div class="col-13">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Conducted by</label>
                     <input type="text" class="form-control form-control-sm" name="conducted" required>
                 </div>
 
-                <div class="col-13">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Address</label>
                     <input type="text" class="form-control form-control-sm" name="address" required>
                 </div>
 
-                <div class="col-6">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Date started</label>
                     <input type="date" class="form-control form-control-sm" name="date_started" required>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Date ended</label>
                     <input type="date" class="form-control form-control-sm" name="date_ended" required>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Time Duration</label>
                     <input type="time" class="form-control form-control-sm" name="time_duration" required>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-8">
                     <label for="seminarOption" class="form-label col-form-label-sm">Seminar Type</label>
-                    <select id="seminarOption" class="form-select form-select-sm" name="seminar_type" required>
+                    <select id="seminarOption" type="text" class="form-select form-select-lg" name="seminar_type" required>
                         <option selected>Choose...</option>
                         <option>Managerial</option>
                         <option>Supervisory</option>
@@ -58,7 +57,17 @@
                     </select>
                 </div>
 
-                <div class="col-6">
+                <div class="col-8">
+                    <label for="seminarOption" class="form-label col-form-label-sm">Level</label>
+                    <select id="seminarOption" type="text" class="form-select form-select-sm" name="level" required>
+                        <option selected>Choose...</option>
+                        <option>beginner</option>
+                        <option>intermediate</option>
+                        <option>Expert</option>
+                    </select>
+                </div>
+
+                <div class="col-12">
                     <label class="form-label col-form-label-sm">Seminar Certification</label>
                     <input type="file" class="form-control form-control-sm" name="img" accept="image/*">
                 </div>
