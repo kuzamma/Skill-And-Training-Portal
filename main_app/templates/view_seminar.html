@@ -5,42 +5,25 @@
 
 {% block content %}
 
-<div class="content mt-3">
+<div class="content mt-7">
     <div class="card card-body mt-3">
-        <h4 class="mb-3">LIST SEMINARS</h4>
 
-        <div class="card card-body">
-            <form method="GET">
-                <h6 class="text-muted">Search for Title:</h6>
-                <div class="row">
-                    <div class="form-group col-4">
-                        <h6>{{ seminarFilter.form.title.label_tag }}</h6>
-                        {% render_field seminarFilter.form.title class="form-control form-control-sm" %}
-                    </div>
 
-                    <div class="col-2">
-                        <button class="btn btn-sm btn-primary mt-4 px-3 fw-bold" type="submit">
-                            <i class="fa-solid fa-magnifying-glass me-1"></i>Search
-                        </button>
-                    </div>
 
-                </div>
-            </form>
-        </div>
-
-        <div class="card card-body mt-2">
-            <table class="table table-sm table-hover">
+         <div class="table-responsive">
+            <table class="table table-sm table-hover table-bordered table-striped">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Conducted by</th>
+                    <th scope="col">Learning Location</th>
+                    <th scope="col">coach or mentor by</th>
                     <th scope="col">Date Started</th>
                     <th scope="col">Date Ended</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Seminar Type</th>
-                    <th scope="col">Level</th>
+                    <th scope="col">Time Duration</th>
+                    <th scope="col">No. of Hours</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Action</th>
 
 
                 </tr>
@@ -55,9 +38,10 @@
                     <td>{{seminar.conducted}}</td>
                     <td>{{seminar.date_started}}</td>
                     <td>{{seminar.date_ended}}</td>
-                    <td>{{seminar.time_duration}}</td>
+                    <td>{{seminar.time_duration}} - {{seminar.time_end}}</td>
+                    <td>{{seminar.no_hours}} hours</td>
                     <td>{{seminar.seminar_type}}</td>
-                    <td>{{seminar.level}}</td>
+
 
                     <td><a href="{% url 'edit_seminar' seminar.id %}" class="btn btn-info">Edit</a>
                         <a href="{% url 'delete_seminar' seminar.id %}" class="btn btn-danger"

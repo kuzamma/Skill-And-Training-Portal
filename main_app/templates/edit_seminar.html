@@ -48,15 +48,39 @@
                     <label class="form-label col-form-label-sm">Time Duration</label>
                     <input type="time" class="form-control form-control-sm" value="{{seminarItem.time_duration}}"
                            name="time_duration">
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Time Ended</label>
+                    <input type="time" class="form-control form-control-sm" value="{{seminarItem.time_end}}"
+                           name="time_end">
+                </div>
+
+                   <div class="col-12">
+                    <label class="form-label col-form-label-sm">Number of Hours</label>
+                    <input type="number" class="form-control form-control-sm" value="{{seminarItem.no_hours}}"
+                           name="no_hours">
+                </div>
+
                 </div>
                 <div class="col-12">
                     <label class="form-label col-form-label-sm">Seminar Type</label>
                     <select class="form-select form-select-sm" value="{{seminarItem.seminar_type}}" name="seminar_type">
-                        <option>Managerial</option>
-                        <option>Supervisory</option>
-                        <option>Technical</option>
+                       <option>Basic</option>
+                        <option>intermediate</option>
+                        <option>Advance</option>
+                        <option>Superior</option>
                     </select>
                 </div>
+
+                 <div class="col-8">
+                    <label for="seminarOption" class="form-label col-form-label-sm">Level</label>
+                    <select id="seminarOption" type="text" class="form-select form-select-sm" name="level" required>
+                        <option selected>Choose...</option>
+                        <option>beginner</option>
+                        <option>intermediate</option>
+                        <option>Expert</option>
+                    </select>
+                </div>
+
             </div>
 
             <button type="submit" class="btn btn-primary btn-sm mt-2">Update Seminar</button>

@@ -9,14 +9,17 @@
 
     <div class="card card-body mt-20">
         <div class="mb-3">
-            <h4 class="d-inline">ADD SEMINAR</h4>
-            <a href="{% url 'view_seminar' %}" class="align=left btn btn-sm btn-primary d-inline float-end">View Seminar</a>
+
+
+        </div>
+        <div class="mb-3 align=left">
+        <a href="{% url 'view_seminar' %}" class="align=left btn btn-sm btn-primary ">View Formal</a>
         </div>
 
         <form class="card card-body" method="POST">
             {% csrf_token %}
 
-            <h6 class="card-header bg-success">Seminar Details</h6>
+            <h6 class="card-header bg-success">Formal Details</h6>
             <div class="card-body row g-3">
 
                 <div class="col-12">
@@ -25,12 +28,12 @@
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label col-form-label-sm">Conducted by</label>
+                    <label class="form-label col-form-label-sm">coach or mentor by</label>
                     <input type="text" class="form-control form-control-sm" name="conducted" required>
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label col-form-label-sm">Address</label>
+                    <label class="form-label col-form-label-sm">Learning Location</label>
                     <input type="text" class="form-control form-control-sm" name="address" required>
                 </div>
 
@@ -47,13 +50,26 @@
                     <input type="time" class="form-control form-control-sm" name="time_duration" required>
                 </div>
 
+                 <div class="col-12">
+                    <label class="form-label col-form-label-sm">Time Ended</label>
+                    <input type="time" class="form-control form-control-sm" value="{{seminarItem.time_end}}"
+                           name="time_end">
+                </div>
+
+                 <div class="col-12">
+                    <label class="form-label col-form-label-sm">Number of Hours</label>
+                    <input type="number" class="form-control form-control-sm" value="{{seminarItem.no_hours}}"
+                           name="no_hours">
+                </div>
+
                 <div class="col-8">
-                    <label for="seminarOption" class="form-label col-form-label-sm">Seminar Type</label>
+                    <label for="seminarOption" class="form-label col-form-label-sm"> Type</label>
                     <select id="seminarOption" type="text" class="form-select form-select-lg" name="seminar_type" required>
                         <option selected>Choose...</option>
-                        <option>Managerial</option>
-                        <option>Supervisory</option>
-                        <option>Technical</option>
+                        <option>Basic</option>
+                        <option>intermediate</option>
+                        <option>Advance</option>
+                        <option>Superior</option>
                     </select>
                 </div>
 
@@ -67,13 +83,9 @@
                     </select>
                 </div>
 
-                <div class="col-12">
-                    <label class="form-label col-form-label-sm">Seminar Certification</label>
-                    <input type="file" class="form-control form-control-sm" name="img" accept="image/*">
-                </div>
 
             </div>
-            <button type="submit" class="btn btn-primary btn-sm mt-2">Add Seminar</button>
+            <button type="submit" class="btn btn-primary btn-sm mt-2">Add Formal</button>
         </form>
     </div>
 </div>

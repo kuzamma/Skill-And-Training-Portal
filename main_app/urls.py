@@ -1,14 +1,16 @@
-from django.urls import path
+
 from . import views
-from .views import LoginView, RegistrationView, ProfileView, ViewProfile, edit_profile
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
+from main_app import views as main_app
 
 
 urlpatterns = [
                 path('', views.homePage, name='home'),
-                path('register', RegistrationView.as_view(), name="register"),
-                path('login', LoginView.as_view(), name="login"),
-
-                path('profile', ProfileView.as_view(), name="profile"),
 
                 path('addSeminar/', views.addSeminar, name='add_seminar'),
                 path('addWorkshop/', views.addWorkshop, name='add_workshop'),
@@ -25,7 +27,5 @@ urlpatterns = [
                 path('deleteSeminar/<int:seminarId>/', views.deleteSeminar, name='delete_seminar'),
                 path('deleteWorkshop/<int:workshopId>/', views.deleteWorkshop, name='delete_workshop'),
                 path('deleteSkill/<int:skillId>/', views.deleteSkill, name='delete_skill'),
-                path('viewprofile', ViewProfile.as_view(), name="view_profile"),
-                path('edit_profile', views.edit_profile, name="edit_profile"),
 
               ]

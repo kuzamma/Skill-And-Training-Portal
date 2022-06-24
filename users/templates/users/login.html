@@ -1,9 +1,6 @@
 
 {% load static %}
 
-
-
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>S.T | Log In</title>
@@ -43,13 +40,13 @@
                 </div>
                 {% endif %}
 
-                <div class=" align=center py-3">
-                <h4 class="text-center"> <b>USM</b> Skills & Training Portal</h4>
-               <h5 class="text-center"> Login to your Account </h5>
 
-        </div>
                 <form action="login" method="post">
                     {% csrf_token %}
+                    <div class=" align=center py-3">
+                <h4 class="text-center"> <b>USM</b> Skills & Training Portal</h4>
+                     <h5 class="text-center"> Login to your Account </h5>
+                </div>
                     <div class="input-group mb-3">
                         <input required type="username" name='username' class="form-control" placeholder="username">
                         <div class="input-group-append">
@@ -92,7 +89,7 @@
 
 
 
-                    <a href="{% url 'register' %}">WALA PA beh</a>
+                    <a href="{% url 'register' %}">Sign up</a>
                 </p>
 
             </div>

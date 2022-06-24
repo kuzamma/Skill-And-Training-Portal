@@ -3,21 +3,20 @@
 
 {% block content %}
 
+<div class="content ">
 
-
-
-<div class="content mt-3">
-
-    <div class="card card-body mt-3">
+    <div class="card card-body mt-20">
         <div class="mb-3">
-            <h4 class="d-inline">ADD WORKSHOP</h4>
-            <a href="{% url 'view_workshop' %}" class="btn btn-sm btn-primary d-inline float-end">View Workshop</a>
-        </div>
 
+
+        </div>
+ <div class="mb-3">
+     <a href="{% url 'view_workshop' %}" class="btn btn-sm btn-primary d-inline float-end">View Competency</a>
+        </div>
         <form class="card card-body" method="POST">
             {% csrf_token %}
 
-            <h6 class="card-header bg-success">Workshop Details</h6>
+            <h6 class="card-header bg-success">Details</h6>
             <div class="card-body row g-3">
 
                 <div class="col-12">
@@ -48,6 +47,18 @@
                     <input type="time" class="form-control form-control-sm" name="time_duration" required>
                 </div>
 
+                 <div class="col-12">
+                    <label class="form-label col-form-label-sm">Time Ended</label>
+                    <input type="time" class="form-control form-control-sm" value="{{skillItem.time_end}}"
+                           name="time_end">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Number of Hours</label>
+                    <input type="number" class="form-control form-control-sm" value="{{skillItem.no_hours}}"
+                           name="no_hours">
+                </div>
+
                 <div class="col-12">
                     <label for="workshopOption" class="form-label col-form-label-sm">Workshop Type</label>
                     <select id="workshopOption" class="form-select form-select-sm" name="seminar_type" required>
@@ -62,19 +73,16 @@
                     <label for="workshopOption" class="form-label col-form-label-sm">Level</label>
                     <select id="workshopOption" type="text" class="form-select form-select-sm" name="level" required>
                         <option selected>Choose...</option>
-                        <option>beginner</option>
-                        <option>intermediate</option>
-                        <option>Expert</option>
+                        <option>basic</option>
+                        <option>Intermediate</option>
+                        <option>Advance</option>
+                        <option>Superior</option>
                     </select>
                      </div>
 
-                <div class="col-12">
-                    <label class="form-label col-form-label-sm">Seminar Certification</label>
-                    <input type="file" class="form-control form-control-sm" name="img" accept="image/*">
-                </div>
 
             </div>
-            <button type="submit" class="btn btn-primary btn-sm mt-2">Add Workshop</button>
+            <button type="submit" class="btn btn-primary btn-sm mt-2">Add </button>
         </form>
     </div>
 </div>

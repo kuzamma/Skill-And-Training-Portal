@@ -10,59 +10,41 @@
 
 <div class="content mt-3">
     <div class="card card-body mt-3">
-        <h4 class="mb-3">LIST SKILLS</h4>
+        <h4 class="mb-3">EDUCATIONAL BACKGROUND</h4>
 
-        <div class="card card-body">
-            <form method="GET">
-                <h6 class="text-muted">Search for Title:</h6>
-                <div class="row">
-                    <div class="form-group col-4">
-                        <h6>{{ skillFilter.form.title.label_tag }}</h6>
-                        {% render_field skillFilter.form.title class="form-control form-control-sm" %}
-                    </div>
 
-                    <div class="col-2">
-                        <button class="btn btn-sm btn-primary mt-4 px-3 fw-bold" type="submit">
-                            <i class="fa-solid fa-magnifying-glass me-1"></i>Search
-                        </button>
-                    </div>
 
-                </div>
-            </form>
-        </div>
-
-        <div class="card card-body mt-2">
-            <table class="table table-sm table-hover">
+         <div class="table-responsive">
+            <table class="table table-sm table-hover table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Conducted by</th>
-                    <th scope="col">Date Started</th>
-                    <th scope="col">Date Ended</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Skill Type</th>
-                    <th scope="col">Level</th>
+
+                    <th scope="col">LEVEL</th>
+                    <th scope="col">NAME OF SCHOOL</th>
+                    <th scope="col">BASIC EDUCATION DEGREE/COURSE</th>
+                    <th scope="col">PERIOD OF ATTENDANCE</th>
+                    <th scope="col">HIGHEST LEVEL UNIT EARNED</th>
+                    <th scope="col">YEAR GRADUATE</th>
+                    <th scope="col">SCHOLARSHIP ACADEMIC HONOR RECEIVED</th>
+
+                    <th scope="col">Action</th>
 
                 </tr>
                 </thead>
                 <tbody>
                 {% for skill in skills%}
                 <tr>
-                    <th scope="row">{{forloop.counter}}</th>
+
 
                     <td>{{skill.title}}</td>
                     <td>{{skill.address}}</td>
                     <td>{{skill.conducted}}</td>
-                    <td>{{skill.date_started}}</td>
-                    <td>{{skill.date_ended}}</td>
-                    <td>{{skill.time_duration}}</td>
-                    <td>{{skill.skill_type}}</td>
-                    <td>{{skill.level}}</td>
+                    <td>{{skill.date_started}} - {{skill.date_ended}}</td>
+                    <td>{{skill.time_duration}} </td>
+                    <td>{{skill.time_end}}</td>
+                    <td>{{skill.no_hours}} </td>
                     <td><a href="{% url 'edit_skill' skill.id %}" class="btn btn-info">Edit</a>
-                        <a href="{% url 'delete_skill' skill.id %}" class="btn btn-danger"
-                           onclick="return confirm('Are you sure about this ?')">Delete</a>
+
                     </td>
                 </tr>
                 {% endfor %}

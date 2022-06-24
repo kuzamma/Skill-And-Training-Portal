@@ -45,10 +45,22 @@
                            name="date_ended">
                 </div>
                 <div class="col-12">
-                    <label class="form-label col-form-label-sm">Time Duration</label>
+                    <label class="form-label col-form-label-sm">Time Started</label>
                     <input type="time" class="form-control form-control-sm" value="{{skillItem.time_duration}}"
                            name="time_duration">
                 </div>
+                 <div class="col-12">
+                    <label class="form-label col-form-label-sm">Time Ended</label>
+                    <input type="time" class="form-control form-control-sm" value="{{skillItem.time_end}}"
+                           name="time_end">
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label col-form-label-sm">Number of Hours</label>
+                    <input type="number" class="form-control form-control-sm" value="{{skillItem.no_hours}}"
+                           name="no_hours">
+                </div>
+
                 <div class="col-12">
                     <label class="form-label col-form-label-sm">Skill Type</label>
                     <select class="form-select form-select-sm" value="{{skillItem.skill_type}}" name="skill_type">

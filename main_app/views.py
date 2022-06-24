@@ -1,12 +1,10 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from django.contrib.auth.models import User
-from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from .filters import *
 from django.contrib import auth
-from django.shortcuts import (HttpResponseRedirect, get_object_or_404, redirect, render)
+from django.shortcuts import (redirect, render)
+from users.forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 def homePage(request):
@@ -30,11 +28,13 @@ def addSeminar(request):
         date_started = request.POST['date_started']
         date_ended = request.POST['date_ended']
         time_duration = request.POST['time_duration']
+        time_end = request.POST['time_end']
+        no_hours = request.POST['no_hours']
         seminar_type = request.POST['seminar_type']
         level = request.POST['level']
 
         saveSeminar = Seminar(title=title, address=address, conducted=conducted, date_started=date_started,
-                              date_ended=date_ended, time_duration=time_duration, seminar_type=seminar_type,
+                              date_ended=date_ended, time_duration=time_duration,time_end=time_end,no_hours=no_hours, seminar_type=seminar_type,
                               level=level)
         saveSeminar.save()
         messages.success(request, 'Added Successfully!')
@@ -50,10 +50,12 @@ def addWorkshop(request):
         date_started = request.POST['date_started']
         date_ended = request.POST['date_ended']
         time_duration = request.POST['time_duration']
+        time_end = request.POST['time_end']
+        no_hours = request.POST['no_hours']
         seminar_type = request.POST['seminar_type']
         level = request.POST['level']
         saveWorkshop = Workshop(title=title, address=address, conducted=conducted, date_started=date_started,
-                                date_ended=date_ended, time_duration=time_duration, seminar_type=seminar_type,
+                                date_ended=date_ended, time_duration=time_duration, time_end=time_end,no_hours=no_hours, seminar_type=seminar_type,
                                 level=level)
         saveWorkshop.save()
         messages.success(request, 'Added Successfully!')
@@ -69,10 +71,12 @@ def addSkill(request):
         date_started = request.POST['date_started']
         date_ended = request.POST['date_ended']
         time_duration = request.POST['time_duration']
+        time_end = request.POST['time_end']
+        no_hours = request.POST['no_hours']
         skill_type = request.POST['skill_type']
         level = request.POST['level']
         saveSkill = Skill(title=title, address=address, conducted=conducted, date_started=date_started,
-                          date_ended=date_ended, time_duration=time_duration, skill_type=skill_type, level=level)
+                          date_ended=date_ended, time_duration=time_duration, time_end=time_end,no_hours=no_hours, skill_type=skill_type, level=level)
         saveSkill.save()
         messages.success(request, 'Added Successfully!')
 
@@ -146,6 +150,8 @@ def updateSeminar(request, seminarId):
     seminarItem.date_started = request.POST['date_started']
     seminarItem.date_ended = request.POST['date_ended']
     seminarItem.time_duration = request.POST['time_duration']
+    seminarItem.time_end = request.POST['time_end']
+    seminarItem.no_hours = request.POST['no_hours']
     seminarItem.seminar_type = request.POST['seminar_type']
     seminarItem.save()
     messages.success(request, 'Updated Successfully!')
@@ -161,7 +167,9 @@ def updateWorkshop(request, workshopId):
     workshopItem.date_started = request.POST['date_started']
     workshopItem.date_ended = request.POST['date_ended']
     workshopItem.time_duration = request.POST['time_duration']
-    workshopItem.seminar_type = request.POST['seminar_type']
+    workshopItem.time_end = request.POST['time_end']
+    workshopItem.no_hours = request.POST['no_hours']
+    workshopItem.level = request.POST['level']
     workshopItem.save()
     messages.success(request, 'Updated Successfully!')
 
@@ -176,6 +184,8 @@ def updateSkill(request, skillId):
     skillItem.date_started = request.POST['date_started']
     skillItem.date_ended = request.POST['date_ended']
     skillItem.time_duration = request.POST['time_duration']
+    skillItem.time_end = request.POST['time_end']
+    skillItem.no_hours = request.POST['no_hours']
     skillItem.skill_type = request.POST['skill_type']
     skillItem.save()
     messages.success(request, 'Updated Successfully!')
@@ -207,38 +217,6 @@ def deleteSkill(request, skillId):
     return redirect(viewSkill)
 
 
-class RegistrationView(View):
-    def get(self, request):
-        return render(request, 'register.html')
-
-    def post(self, request):
-
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-
-        context = {
-            'fieldValues': request.POST
-        }
-
-        if not User.objects.filter(username=username).exists():
-            if not User.objects.filter(email=email).exists():
-                if len(password) < 6:
-                    messages.error(request, 'Password too short')
-                    return render(request, 'register.html', context)
-
-                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username,
-                                                email=email)
-                user.set_password(password)
-                user.save()
-
-                messages.success(request, 'you have successfully created an account')
-                return render(request, 'login.html', context)
-        else:
-            messages.error(request, 'user name already exist')
-            return render(request, 'register.html', context)
 
 
 class LoginView(View):
@@ -263,51 +241,4 @@ class LoginView(View):
         return render(request, 'login.html')
 
 
-class ProfileView(View):
-    def get(self, request):
-        return render(request, 'profile.html')
-
-
-@login_required
-def update_profile(request):
-    if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('settings:profile')
-        else:
-            messages.error(request, _('Please correct the error below.'))
-
-
-
-class ViewProfile(View):
-    def get(self, request):
-        return render(request, 'view_profile.html')
-
-
-def edit_profile(request):
-
-
-    if request.method == 'POST':
-
-        first_name = form.cleaned_data.get('first_name')
-        last_name = form.cleaned_data.get('last_name')
-        address = form.cleaned_data.get('address')
-        username = form.cleaned_data.get('username')
-        email = form.cleaned_data.get('email')
-        gender = form.cleaned_data.get('gender')
-        password = form.cleaned_data.get('password') or None
-        passport = request.FILES.get('profile_pic') or None
-
-        user.first_name = first_name
-        user.last_name = last_name
-        user.gender = gender
-        user.address = address
-        user.save()
-
-        messages.success(request, "Successfully Updated")
-    return render(request, 'view_profile')
 
